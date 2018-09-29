@@ -14,6 +14,7 @@ import {
 } from 'paper-react';
 import './index.css';
 
+import Toolbar from './Toolbar';
 import withTools from './hoc/withTools';
 
 interface IProps {
@@ -77,12 +78,12 @@ class Paper extends React.Component<IProps, IState> {
       ref: (ref: any) => this.view = ref,
       // onWheel: this.props.moveToolMouseWheel,
       matrix: R.pick(['sx', 'sy', 'tx', 'ty', 'x', 'y', 'zoom'])(this.props),
+      style: {top: '150px', left: '50px'},
     };
 
-    console.log('viewProps ', viewProps);
-    
     return (
       <div className={`Paper tool-${activeTool}`}>
+        <Toolbar />
         <View {...viewProps} >
           <Layer name={'raster'}>
             <Raster locked={true} source={image} onLoad={imageLoaded} />
